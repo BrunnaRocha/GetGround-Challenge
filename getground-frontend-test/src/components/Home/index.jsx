@@ -29,15 +29,7 @@ export default function Home() {
     <Container>
       <Title>GetGround Librarie</Title>
       <Description>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-        aliquet, ante vitae pulvinar efficitur, enim leo elementum nunc, non
-        congue purus odio non magna. Vestibulum ante ipsum primis in faucibus
-        orci luctus et ultrices posuere cubilia curae; Sed faucibus, diam
-        lacinia imperdiet aliquet, velit leo volutpat ante, sed vestibulum arcu
-        nibh vel ex. Sed nulla tortor, laoreet at convallis et, fringilla id
-        metus. Vestibulum condimentum imperdiet lectus at fringilla. Morbi quis
-        est tempor, convallis felis et, tristique nunc. Nullam feugiat mauris a
-        congue facilisis.
+      Please register your book or search for one already registered:
       </Description>
       <BooksTable />
     </Container>

@@ -7,6 +7,7 @@ const Container = styled.footer`
   align-items: center;
   width: 100%;
   height: 50px;
+  padding: 12px;
 
   strong {
     color: #1C444E;
