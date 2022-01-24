@@ -1,7 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import MaterialTable from 'material-table'
 
-export default function BooksTable() {
+
+function BooksTable() {
   const books = [
     {
       "id": 240,
@@ -42,7 +44,7 @@ export default function BooksTable() {
     <div style={{ maxWidth: '100%' }}>
       <MaterialTable
         columns={[
-          { title: 'Book Title', field: 'book_title' },
+          { title: 'Book_title', field: 'book_title' },
           { title: 'Author', field: 'book_author' },
           { title: 'Pages', field: 'book_pages', type: 'numeric' },
           { title: 'Publication Year', field: 'book_publication_year', type: 'numeric' },
@@ -54,5 +56,6 @@ export default function BooksTable() {
       />
     </div>
   )
-}
+};
 
+export default connect()(BooksTable);
