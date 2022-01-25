@@ -1,0 +1,19 @@
+// Vitest Snapshot v1
+
+exports[`Footer match snapshot 1`] = `
+<footer
+  className="sc-bdvvtL iNBamC"
+>
+  <strong>
+    Developed by
+     
+    <a
+      href="https://github.com/BrunnaRocha"
+      rel="noreferrer"
+      target="_blank"
+    >
+      Brunna Rocha
+    </a>
+  </strong>
+</footer>
+`;
