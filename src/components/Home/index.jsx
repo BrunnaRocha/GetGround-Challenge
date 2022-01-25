@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BooksTable from "../BooksTable";
-
+import { useDispatch } from "react-redux";
+import { fetchBooks } from './actions';
+import { useParams } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -25,13 +27,27 @@ const Description = styled.h3`
 
 
 export default function Home() {
+  const { page } = useParams();
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchBooks(page, itemsPerPage))
+  }, [page, itemsPerPage]);
+
   return (
     <Container>
-      <Title>GetGround Librarie</Title>
+      <Title>GetGround Library</Title>
       <Description>
-      Please register your book or search for one already registered:
+        Search for a registered book from our API:
       </Description>
-      <BooksTable />
+      <BooksTable
+        currentPage={page - 1}
+        onChangeRowsPerPage={setItemsPerPage}
+        rowsPerPage={itemsPerPage}
+      />
     </Container>
   );
 }
+
+
