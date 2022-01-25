@@ -1,50 +1,26 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import MaterialTable from 'material-table'
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import MaterialTable from 'material-table';
+import { getBooks, getTotalCount } from '../Home/selectors';
+import { useHistory } from 'react-router-dom';
+import TablePagination from "@material-ui/core/TablePagination";
 
+export default function BooksTable(props) {
+  const { onChangeRowsPerPage, rowsPerPage, currentPage, onChangePage } = props;
+  const [page, setPage] = useState(currentPage);
+  const history = useHistory();
+  const books = useSelector(getBooks);
+  const totalCount = useSelector(getTotalCount);
 
-function BooksTable() {
-  const books = [
-    {
-      "id": 240,
-      "book_author": [
-        "Worcester, Joseph Emerson (1784–1865) "
-      ],
-      "book_title": "Ιστορία της Αρχαίας Ελλάδος",
-      "book_publication_year": 1831,
-      "book_publication_country": "Μάλτα",
-      "book_publication_city": "Μελίτη",
-      "book_pages": 60
-    },
-    {
-      "id": 245,
-      "book_author": [
-        "Worcester, Joseph Emerson (1784–1865) "
-      ],
-      "book_title": "Σύνοψις της Ρωμαϊκής Ιστορίας",
-      "book_publication_year": 1831,
-      "book_publication_country": "Μάλτα",
-      "book_publication_city": "Μελίτη",
-      "book_pages": 92
-    },
-    {
-      "id": 2482,
-      "book_author": [
-        "Worcester, Joseph Emerson (1784–1865) "
-      ],
-      "book_title": "Ιστορία της Αρχαίας Ελλάδος, εις χρήσιν των Σχολείων",
-      "book_publication_year": 1831,
-      "book_publication_country": "Μάλτα",
-      "book_publication_city": "Μελίτη",
-      "book_pages": 60
-    }
-  ]
-  
+  useEffect(() => {
+    history.push(`/${page + 1}`)
+  }, [page])
+
   return (
     <div style={{ maxWidth: '100%' }}>
       <MaterialTable
         columns={[
-          { title: 'Book_title', field: 'book_title' },
+          { title: 'Book title', field: 'book_title' },
           { title: 'Author', field: 'book_author' },
           { title: 'Pages', field: 'book_pages', type: 'numeric' },
           { title: 'Publication Year', field: 'book_publication_year', type: 'numeric' },
@@ -53,9 +29,19 @@ function BooksTable() {
         ]}
         data={books}
         title=""
+        onChangeRowsPerPage={onChangeRowsPerPage}
+        components={{
+          Pagination: paginationProps => (
+            <TablePagination 
+              {...paginationProps}
+              onChangePage={(_, nextPage) => setPage(nextPage)}
+              count={totalCount}
+              rowsPerPage={rowsPerPage}
+              page={page}
+            />
+          )
+        }}
       />
     </div>
   )
 };
-
-export default connect()(BooksTable);
